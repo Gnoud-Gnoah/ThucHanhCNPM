@@ -1,4 +1,4 @@
-let constWeightBallGreen = 545;
+let constWeightBallGreen = 515;
 let ballNumber = 8;
 
 
@@ -29,6 +29,19 @@ class Scene1 extends Phaser.Scene{
         this.load.image('carBig', 'Assets/15.png')
         this.load.image('ballGreen', 'Assets/ballGreen.png')
         this.load.image('speaker', 'Assets/speaker.png')
+
+
+        this.load.image('ballGroup1', 'Assets/1/ballGroup1.png')
+        this.load.image('bearGroup1', 'Assets/1/bearGroup1.png')
+        this.load.image('gatoGroup1', 'Assets/1/gatoGroup1.png')
+
+        this.load.image('ballGroup2', 'Assets/2/ballGroup2.png')
+        this.load.image('bearBlueGroup2', 'Assets/2/bearBuleGroup2.png')
+        this.load.image('gatoGroup2', 'Assets/2/gatoGroup2.png')
+
+        this.load.image('ballGroup3', 'Assets/3/ballGroup3.png')
+        this.load.image('bearGroup3', 'Assets/3/bearGroup3.png')
+        this.load.image('gatoGroup3', 'Assets/3/gatoGroup3.png')
     }
 
     //create game;
@@ -37,10 +50,16 @@ class Scene1 extends Phaser.Scene{
         this.backGround = this.add.image(0, 0, 'backGround').setOrigin(0, 0)
         this.frameWork = this.add.image(250, 20, 'frameWork').setOrigin(0, 0)
 
+
+        this.ballGroup1 = this.add.image(250, 90, 'ballGroup1').setOrigin(0, 0)
+        this.bearGroup1 = this.add.image(250, 240, 'bearGroup1').setOrigin(0, 0)
+        this.gatoGroup1 = this.add.image(250, 390, 'gatoGroup1').setOrigin(0, 0)
+
         let arr = new Array("ballGreen");
         for(let i = 0; i < ballNumber; i++){
-            arr[i] = this.add.image(constWeightBallGreen += 25, 48, "ballGreen").setOrigin(0, 0);
+            arr[i] = this.add.image(constWeightBallGreen += 25, 38, "ballGreen").setOrigin(0, 0);
         }
+
     }
 
     //Update;
