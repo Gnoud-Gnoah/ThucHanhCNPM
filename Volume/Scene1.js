@@ -1,7 +1,7 @@
 let constWeightBallGreen = 515;
 let ballNumber = 8;
 let numberGame = 2;
-let isStart = 0;
+let checkCorrect = 2
 
 
 class Scene1 extends Phaser.Scene{
@@ -83,7 +83,6 @@ class Scene1 extends Phaser.Scene{
             this.startButton2.setInteractive().on('pointerup', () => {
                 this.StartSheet.destroy()
                 this.startButton2.destroy()
-                isStart = 1
                 this.guide1()
             })
             this.startButton2.on('pointerout', () =>{
@@ -99,44 +98,55 @@ class Scene1 extends Phaser.Scene{
     handleCorrect(button){
         button.setTint(0x7BD400)
         this.deleteImage()
-        numberGame--;
+        numberGame--
+        checkCorrect--
+        var temp = button.x + button.y
 
         this.time.delayedCall(50, function wrong() {
-            button.x += 11.5
-            button.y = -button.x + 1155
+            button.y -= 11.5
+            button.x = temp - button.y
             this.time.delayedCall(50, function wrong() {
-                button.x += 11.5
-                button.y = -button.x + 1155
+                button.y -= 11.5
+                button.x = temp - button.y
                 this.time.delayedCall(50, function wrong() {
-                    button.x += 11.5
-                    button.y = -button.x + 1155
+                    button.y -= 11.5
+                    button.x = temp - button.y
                     this.time.delayedCall(50, function wrong() {
-                        button.x += 11.5
-                        button.y = -button.x + 1155
+                        button.y -= 11.5
+                        button.x = temp - button.y
                         this.time.delayedCall(50, function wrong() {
-                            button.x += 11.5
-                            button.y = -button.x + 1155
+                            button.y -= 11.5
+                            button.x = temp - button.y
                             this.time.delayedCall(50, function wrong() {
-                                button.x += 11.5
-                                button.y = -button.x + 1155
+                                button.y -= 11.5
+                                button.x = temp - button.y
                                 this.time.delayedCall(50, function wrong() {
-                                    button.x += 11.5
-                                    button.y = -button.x + 1155
+                                    button.y -= 11.5
+                                    button.x = temp - button.y
                                     this.time.delayedCall(50, function wrong() {
-                                        button.x += 11.5
-                                        button.y = -button.x + 1155
+                                        button.y -= 11.5
+                                        button.x = temp - button.y
                                         this.time.delayedCall(50, function wrong() {
-                                            button.x += 11.5
-                                            button.y = -button.x + 1155
+                                            button.y -= 11.5
+                                            button.x = temp - button.y
                                             this.time.delayedCall(50, function wrong() {
-                                                button.x += 11.5
-                                                button.y = -button.x + 1155
+                                                button.y -= 11.5
+                                                button.x = temp - button.y
                                                 this.time.delayedCall(500, function wrong() {
                                                     this.add.image(button.x - 20, button.y, 'image1')
                                                     button.destroy()
                                                     this.time.delayedCall(500, function wrong() {
                                                         if(numberGame == 1){
                                                             this.guide2()
+                                                        }
+                                                        else if(numberGame == 0 && checkCorrect == 0){
+                                                            this.scene.start('Scene2')
+                                                        }
+                                                        else{
+                                                            constWeightBallGreen = 515
+                                                            numberGame = 2
+                                                            checkCorrect = 2
+                                                            this.scene.start('Scene1')
                                                         }
                                                     }, [], this)
                                                 }, [], this)
@@ -158,13 +168,14 @@ class Scene1 extends Phaser.Scene{
     }
 
     handleWrong(button){
-
+        checkCorrect++
         button.setTint(0xFF283D)
 
         this.time.delayedCall(500, function wrong() {
-            if(checkTint == 0){
-                button.setTint(0xFFC400);
-            }
+            button.setTint(0xFFC400);
+            this.time.delayedCall(5, function wrong() {
+                button.clearTint();
+            }, [], this)
         }, [], this)
 
     }
